@@ -32,7 +32,7 @@ DEBUG = os.getenv('DEBUG', False) == 'True'
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://sailor-python-project-52-production.up.railway.app/'
+    'https://sailor-python-project-52-production.up.railway.app'
 ]
 
 
