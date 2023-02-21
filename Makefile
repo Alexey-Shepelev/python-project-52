@@ -28,8 +28,8 @@ check: selfcheck lint test
 
 test-coverage:
 	poetry run coverage run ./manage.py test
-	poetry run coverage report --include=*/models.py,*/views.py,*/urls.py,*/filters.py
-	poetry run coverage xml --include=*/models.py,*/views.py,*/urls.py,*/filters.py
+	poetry run coverage report
+	poetry run coverage xml
 
 .PHONY: shell
 shell:
