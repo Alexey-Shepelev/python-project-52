@@ -31,5 +31,6 @@ test-coverage:
 	poetry run coverage report --include=*/models.py,*/views.py,*/urls.py,*/filters.py
 	poetry run coverage xml --include=*/models.py,*/views.py,*/urls.py,*/filters.py
 
+.PHONY: shell
 shell:
 	$(MANAGE) shell_plus --ipython

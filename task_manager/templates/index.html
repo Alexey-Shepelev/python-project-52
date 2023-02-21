@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Task manager</title>
-</head>
-<body>
-  <h1>Hello, World!</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+<div class="container wrapper flex-grow-1">
+  <h1 class="my-4"> </h1>
+  <h1 class="my-4"></h1>
+  <div class="card">
+    <div class="card-body p-5 bg-light">
+      <div class="display-4">Привет от Хекслета!</div>
+      <p class="lead">Практические курсы по программированию</p>
+      <hr>
+      <a class="btn btn-primary btn-lg" target="_blank" href="https://ru.hexlet.io">Узнать больше</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
