@@ -220,7 +220,7 @@ Django = ">=3.2"
 name = "django-extensions"
 version = "3.2.1"
 description = "Extensions for Django"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -592,14 +592,14 @@ cli = ["click (>=5.0)"]
 
 [[package]]
 name = "setuptools"
-version = "67.3.2"
+version = "67.3.3"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "setuptools-67.3.2-py3-none-any.whl", hash = "sha256:bb6d8e508de562768f2027902929f8523932fcd1fb784e6d573d2cafac995a48"},
-    {file = "setuptools-67.3.2.tar.gz", hash = "sha256:95f00380ef2ffa41d9bba85d95b27689d923c93dfbafed4aecd7cf988a25e012"},
+    {file = "setuptools-67.3.3-py3-none-any.whl", hash = "sha256:9d3de8591bd6f6522594406fa46a6418eabd0562dacb267f8556675762801514"},
+    {file = "setuptools-67.3.3.tar.gz", hash = "sha256:ed4e75fafe103c79b692f217158ba87edf38d31004b9dbc1913debb48793c828"},
 ]
 
 [package.extras]
@@ -721,4 +721,4 @@ brotli = ["Brotli"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "780ccabf4c7113652caacb02221ddb1787cb17c279fb9af698a53f6187b47d45"
+content-hash = "2722f778fb511dc929a98e16933b5d55d2a0333262eba7446f8107f536efeb48"
