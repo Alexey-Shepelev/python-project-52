@@ -1,0 +1,56 @@
+[
+{
+  "model": "users.localuser",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$0W8LqsijTHKFSjlHvndwRY$bPKvuClLazHCDr4jQySKYQrmXFHf3MG2Pffmhixcxlc=",
+    "last_login": "2023-03-04T12:59:09.885Z",
+    "is_superuser": false,
+    "username": "sailor",
+    "first_name": "i'm Popeye the sailor of all seas",
+    "last_name": "i yam what i yam",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-02-23T14:23:15Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.localuser",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$G4MqRXgm4LPyl86ZeUCXES$AxeRMyi8MaE6LV2k6k5B0CHscH0TOR0xQrN3d5B1rCY=",
+    "last_login": "2023-03-04T13:01:09.699Z",
+    "is_superuser": false,
+    "username": "petrushka",
+    "first_name": "Petya",
+    "last_name": "Petrov",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-02-23T18:50:39Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.localuser",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$IztYVggfcps6ylZ9kSn330$yqw0XN1Wn406zYVLwIvsEqGWQRDrNHE13cOgJytCVv8=",
+    "last_login": "2023-02-28T20:11:23.577Z",
+    "is_superuser": false,
+    "username": "_kamisato_",
+    "first_name": "Аяка",
+    "last_name": "Камисато",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-02-28T20:10:49.680Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

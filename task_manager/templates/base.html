@@ -1,7 +1,5 @@
 {% load bootstrap4 %}
 {% load i18n %}
-<!--{% get_current_language as LANGUAGE_CODE %}-->
-
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -20,25 +18,42 @@
       <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">{% translate "Users" %}</a>
+            <a class="nav-link" href="{% url 'users:index' %}">{% translate "Users" %}</a>
           </li>
-
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">{% translate "Statuses" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">{% translate "Labels" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">{% translate "Tasks" %}</a>
+          </li>
+          {% endif %}
         </ul>
         <ul class="navbar-nav">
-
+          {% if user.is_authenticated %}
+          <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <input class="btn nav-link" type="submit" value="{% translate 'Logout' %}">
+          </form>
+          {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="#">{% translate "Log in" %}</a>
+              <a class="nav-link" href="{% url 'login' %}">{% translate "Log in" %}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">{% translate "Sign up" %}</a>
+              <a class="nav-link" href="{% url 'users:create' %}">{% translate "Sign up" %}</a>
             </li>
-
+          {% endif %}
         </ul>
       </div>
     </nav>
+    <div class="container wrapper flex-grow-1">
+    {% bootstrap_messages %}
     {% block content %}
     {% endblock %}
-
+    </div>
     <footer>
       <div class="container my-5 pt-4 border-top">
         <a target="_blank" href="https://ru.hexlet.io">Hexlet</a>

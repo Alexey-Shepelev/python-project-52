@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'bootstrap4',
     'task_manager',
+    'task_manager.users',
 ]
 
 MIDDLEWARE = [
@@ -86,33 +87,35 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlight',
+if os.getenv('DATABASE_URL'):
+    DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlight',
+        }
     }
-}
-
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # noqa: E501
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # noqa: E501
+    # },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',  # noqa: E501
+        'OPTIONS': {
+            'min_length': 3,
+        }
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',  # noqa: E501
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',  # noqa: E501
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',  # noqa: E501
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',  # noqa: E501
+    # },
 ]
 
 
@@ -125,10 +128,13 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
 LOCALE_PATHS = [BASE_DIR / 'locale']
 
+FIXTURE_DIRS = [BASE_DIR / 'fixtures']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -143,6 +149,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_ROOT = BASE_DIR / 'task_manager/staticfiles'
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+AUTH_USER_MODEL = 'users.LocalUser'
+
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
 
 # print SQL queries in shell_plus
 SHELL_PLUS_PRINT_SQL = True
