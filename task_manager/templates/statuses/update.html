@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+<h1 class="my-4">{% translate  'Status change' %}</h1>
+<form method="post">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  <div class="form-group">
+    <input class="btn btn-primary" type="submit" value="{% translate 'Change' %}">
+  </div>
+</form>
+{% endblock %}

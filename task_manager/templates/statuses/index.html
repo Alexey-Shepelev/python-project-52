@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+<h1 class="my-4">{% translate 'Statuses' %}</h1>
+<a class="nav-link" href="{% url 'statuses:create' %}">{% translate 'Create status' %}</a>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>{% translate 'Name' %}</th>
+    <th>{% translate 'Creation date' %}</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for status in statuses %}
+  <tr>
+    <td>{{ status.id }}</td>
+    <td>{{ status.name }}</td>
+    <td>{{ status.created_at|date:"SHORT_DATETIME_FORMAT" }}</td>
+    <td>
+      <a href="{% url 'statuses:update' pk=status.id %}">{% translate 'Change' %}</a>
+      <br>
+      <a href="{% url 'statuses:delete' pk=status.id %}">{% translate 'Delete' %}</a>
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
