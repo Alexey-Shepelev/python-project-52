@@ -7,8 +7,6 @@ from .models import Task
 from .forms import TaskForm
 from task_manager.permissions import MyLoginRequiredMixin, TaskPermissionMixin
 from django.utils.translation import gettext_lazy as _
-from django.contrib import messages
-from django.shortcuts import redirect
 
 
 class IndexView(MyLoginRequiredMixin, ListView):
@@ -48,5 +46,3 @@ class TaskDeleteView(MyLoginRequiredMixin, TaskPermissionMixin,
     success_url = reverse_lazy('tasks:index')
     template_name = 'tasks/delete.html'
     success_message = _('Task successfully deleted')
-
-
