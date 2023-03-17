@@ -1,10 +1,11 @@
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
 from .models import LocalUser
 from .forms import UserForm
-from task_manager.permissions import MyLoginRequiredMixin, UserPermissionMixin
+from task_manager.permissions import MyLoginRequiredMixin, \
+    UserPermissionMixin, MyDeleteView
 
 
 class IndexView(ListView):
@@ -31,8 +32,9 @@ class UserUpdateView(MyLoginRequiredMixin, UserPermissionMixin,
 
 
 class UserDeleteView(MyLoginRequiredMixin, UserPermissionMixin,
-                     SuccessMessageMixin, DeleteView):
+                     MyDeleteView):
     model = LocalUser
     template_name = 'users/delete.html'
     success_url = reverse_lazy('users:index')
-    success_message = _('User successfully deleted')
+    message_success = _('User successfully deleted')
+    message_protect = _('Cannot delete user because it is in use')

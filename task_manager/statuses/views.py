@@ -1,9 +1,9 @@
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Status
 from .forms import StatusForm
-from task_manager.permissions import MyLoginRequiredMixin
+from task_manager.permissions import MyLoginRequiredMixin, MyDeleteView
 from django.utils.translation import gettext_lazy as _
 
 
@@ -28,8 +28,9 @@ class StatusUpdateView(MyLoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = _('Status successfully updated')
 
 
-class StatusDeleteView(MyLoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class StatusDeleteView(MyLoginRequiredMixin, MyDeleteView):
     model = Status
     success_url = reverse_lazy('statuses:index')
     template_name = 'statuses/delete.html'
-    success_message = _('Status successfully deleted')
+    message_success = _('Status successfully deleted')
+    message_protect = _('Cannot delete status because it in use')

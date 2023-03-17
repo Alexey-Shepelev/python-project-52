@@ -45,6 +45,7 @@ class StatusAppTest(TestCase):
         self.assertEqual(Status.objects.count(), 5)
 
     def test_status_update(self):
+
         self.assertEqual(Status.objects.get(pk=1).name, 'новый')
 
         response = self.auth_user.get(
@@ -70,3 +71,4 @@ class StatusAppTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('statuses:index'))
         self.assertEqual(Status.objects.count(), 3)
+        self.assertFalse(Status.objects.filter(pk=1))
