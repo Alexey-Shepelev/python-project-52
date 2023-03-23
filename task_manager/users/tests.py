@@ -8,7 +8,7 @@ from django.db.models import ProtectedError
 
 
 class UsersAppTest(TestCase):
-    fixtures = ['users.json', 'tasks.json', 'statuses.json']
+    fixtures = ['users.json', 'tasks.json', 'statuses.json', 'labels.json']
 
     def setUp(self) -> None:
         self.guest = Client()
@@ -80,6 +80,7 @@ class UsersAppTest(TestCase):
         response = self.auth_user.get(reverse('users:delete', kwargs={'pk': 3}))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('users:index'))
+        self.assertTrue(get_user_model().objects.filter(pk=3))
 
         # authorized user
         response = self.auth_user.get(reverse('users:delete',

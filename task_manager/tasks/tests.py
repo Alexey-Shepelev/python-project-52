@@ -6,7 +6,7 @@ from .models import Task
 
 
 class TaskAppTest(TestCase):
-    fixtures = ['users.json', 'statuses.json', 'tasks.json']
+    fixtures = ['users.json', 'statuses.json', 'tasks.json', 'labels.json']
     test_task = {
         'name': 'test',
         'description': '',
