@@ -66,7 +66,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
-    ]
+]
 
 ROLLBAR = {
     'access_token': os.getenv('ROLLBAR_ACCESS_TOKEN'),

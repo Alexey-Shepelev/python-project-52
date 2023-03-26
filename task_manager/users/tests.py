@@ -23,13 +23,11 @@ class UsersAppTest(TestCase):
         self.assertTemplateUsed(response, template_name='users/create.html')
 
         response = self.guest.post(reverse('users:create'),
-                                   {
-                                       'first_name': 'user',
-                                       'last_name': 'test',
-                                       'username': 'tester',
-                                       'password1': '1234',
-                                       'password2': '1234'
-                                   })
+                                   {'first_name': 'user',
+                                    'last_name': 'test',
+                                    'username': 'tester',
+                                    'password1': '1234',
+                                    'password2': '1234'})
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('login'))
 
@@ -57,14 +55,11 @@ class UsersAppTest(TestCase):
         self.assertTemplateUsed(response, template_name='users/update.html')
         response = self.auth_user.post(reverse('users:update',
                                                kwargs={'pk': self.user.id}),
-                                       {
-                                           'first_name': 'newname',
-                                           'last_name': 'newname',
-                                           'username': 'new',
-                                           'password1': '1234',
-                                           'password2': '1234'
-                                       }
-                                       )
+                                       {'first_name': 'newname',
+                                        'last_name': 'newname',
+                                        'username': 'new',
+                                        'password1': '1234',
+                                        'password2': '1234'})
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('users:index'))
         self.user.refresh_from_db()
