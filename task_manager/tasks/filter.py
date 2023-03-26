@@ -9,6 +9,7 @@ class TaskFilter(django_filters.FilterSet):
 
     labels = django_filters.ModelChoiceFilter(
         queryset=Label.objects.all(),
+        label=_('Label')
     )
     own_tasks = django_filters.BooleanFilter(
         method='show_own_tasks',
