@@ -61,7 +61,6 @@ class TaskAppTest(TestCase):
         self.assertEqual(Task.objects.count(), 4)
 
     def test_task_update(self):
-
         self.assertEqual(Task.objects.get(pk=1).name, 'task1')
 
         response = self.auth_user.get(
@@ -76,7 +75,6 @@ class TaskAppTest(TestCase):
         self.assertEqual(Task.objects.get(pk=1).name, 'test')
 
     def test_task_delete(self):
-
         self.assertEqual(Task.objects.count(), 3)
         # try to "get" by not author
         response = self.auth_user.get(
@@ -95,3 +93,45 @@ class TaskAppTest(TestCase):
         self.assertRedirects(response, reverse('tasks:index'))
         self.assertEqual(Task.objects.count(), 2)
         self.assertFalse(Task.objects.filter(pk=1))
+
+    def test_status_filter(self):
+        filter_string = f"{reverse('tasks:index')}?status=1"
+        response = self.auth_user.get(filter_string)
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(
+            list(response.context['tasks']),
+            list(Task.objects.filter(status=1))
+        )
+
+    def test_executor_filter(self):
+        filter_string = f"{reverse('tasks:index')}?executor=2"
+        response = self.auth_user.get(filter_string)
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(
+            list(response.context['tasks']),
+            list(Task.objects.filter(executor=2))
+        )
+
+    def test_labels_filter(self):
+        filter_string = f"{reverse('tasks:index')}?labels=1"
+        response = self.auth_user.get(filter_string)
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(
+            list(response.context['tasks']),
+            list(Task.objects.filter(labels=1))
+        )
+
+    # def test_filters(self):
+    #     filters_data = {
+    #         'status': [1, Task.objects.filter(status=1)],
+    #         'executor': [2, Task.objects.filter(executor=2)],
+    #         'labels': [1, Task.objects.filter(labels=1)]
+    #     }
+    #     for key_, value in filters_data.items():
+    #         filter_string = f"{reverse('tasks:index')}?{key_}={value[0]}"
+    #         response = self.auth_user.get(filter_string)
+    #         self.assertEqual(response.status_code, 200)
+    #         self.assertQuerysetEqual(
+    #             list(response.context['tasks']),
+    #             list(value[1])
+    #         )
