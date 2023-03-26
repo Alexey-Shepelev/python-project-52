@@ -4,6 +4,7 @@ from django.contrib.auth import logout
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
+from django.http import HttpResponse
 
 
 class UserLoginView(SuccessMessageMixin, LoginView):
@@ -16,13 +17,10 @@ def user_logout(request):
     messages.info(request, _('You are logged out'))
     return redirect('index')
 
-from django.shortcuts import render
-from django.http import HttpResponse
-
 
 def index(request):
     a = None
-    a.hello() # Creating an error with an invalid line of code
+    a.hello()  # Creating an error with an invalid line of code
     return HttpResponse("Hello, world. You're at the pollapp index.")
 
 # class UserLogoutView(LogoutView):
