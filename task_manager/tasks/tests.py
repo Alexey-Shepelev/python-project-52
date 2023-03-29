@@ -3,8 +3,11 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.db.models import ProtectedError
 from .models import Task
+from django import test
 
 
+@test.modify_settings(MIDDLEWARE={'remove': [
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware']})
 class TaskAppTest(TestCase):
     fixtures = ['users.json', 'statuses.json', 'tasks.json', 'labels.json']
     test_task = {
@@ -120,18 +123,3 @@ class TaskAppTest(TestCase):
             list(response.context['tasks']),
             list(Task.objects.filter(labels=1))
         )
-
-    # def test_filters(self):
-    #     filters_data = {
-    #         'status': [1, Task.objects.filter(status=1)],
-    #         'executor': [2, Task.objects.filter(executor=2)],
-    #         'labels': [1, Task.objects.filter(labels=1)]
-    #     }
-    #     for key_, value in filters_data.items():
-    #         filter_string = f"{reverse('tasks:index')}?{key_}={value[0]}"
-    #         response = self.auth_user.get(filter_string)
-    #         self.assertEqual(response.status_code, 200)
-    #         self.assertQuerysetEqual(
-    #             list(response.context['tasks']),
-    #             list(value[1])
-    #         )

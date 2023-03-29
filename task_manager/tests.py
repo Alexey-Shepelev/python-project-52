@@ -2,8 +2,11 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
+from django import test
 
 
+@test.modify_settings(MIDDLEWARE={'remove': [
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware']})
 class AppTest(TestCase):
     fixtures = ['users.json']
 
@@ -25,6 +28,10 @@ class AppTest(TestCase):
         self.assertTemplateUsed(response, template_name='users/index.html')
         self.assertEqual(get_user_model().objects.count(), 3)
         self.assertNotContains(response, text=_('Statuses'))
+        self.assertNotContains(response, text=_('Labels'))
+        self.assertNotContains(response, text=_('Tasks'))
 
         response = self.auth_user.get(reverse('users:index'))
         self.assertContains(response, text=_('Statuses'))
+        self.assertContains(response, text=_('Labels'))
+        self.assertContains(response, text=_('Tasks'))

@@ -2,11 +2,11 @@ from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.db.models import ProtectedError
+from django import test
 
 
-# from django.utils.translation import gettext_lazy as _
-
-
+@test.modify_settings(MIDDLEWARE={'remove': [
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware']})
 class UsersAppTest(TestCase):
     fixtures = ['users.json', 'tasks.json', 'statuses.json', 'labels.json']
 

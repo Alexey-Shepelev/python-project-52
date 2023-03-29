@@ -3,8 +3,11 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from .models import Status
 from django.db.models import ProtectedError
+from django import test
 
 
+@test.modify_settings(MIDDLEWARE={'remove': [
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware']})
 class StatusAppTest(TestCase):
     fixtures = ['users.json', 'statuses.json', 'tasks.json', 'labels.json']
 
