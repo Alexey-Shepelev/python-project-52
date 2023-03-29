@@ -61,6 +61,6 @@ make start
 
 #### Screenshots:
 
-|     |     |
+| ![Снимок экрана от 2023-03-29 22-54-34](https://user-images.githubusercontent.com/103209789/228689187-fb224854-43b8-4dbf-a958-b0da366179bf.png) | ![Снимок экрана от 2023-03-29 22-53-43](https://user-images.githubusercontent.com/103209789/228689362-870e0116-fb50-4097-8259-da7d4d4ecc0b.png) |
 |-----|-----|
-|     |     |
+| ![Снимок экрана от 2023-03-29 22-54-13](https://user-images.githubusercontent.com/103209789/228689550-2b544d79-a008-4fe6-8f97-cda360950c52.png) | ![Снимок экрана от 2023-03-29 22-55-17](https://user-images.githubusercontent.com/103209789/228689616-82176013-d290-4452-aa68-144b63990f83.png) |
